@@ -1,4 +1,4 @@
-:root {
+/*:root {
   --text: #6b6375;
   --text-h: #08060d;
   --bg: #fff;
@@ -108,4 +108,84 @@ code {
   line-height: 135%;
   padding: 4px 8px;
   background: var(--code-bg);
+}*/
+
+body {
+  margin: 0;
+  background-color: #eaf7ff;
+  font-family: Arial, sans-serif;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.memo-box {
+  width: 420px;
+  background-color: #f7fcff;
+  border: 2px solid #b9e3f7;
+  border-radius: 15px;
+  padding: 30px;
+  box-sizing: border-box;
+}
+
+h1 {
+  text-align: center;
+  color: #4da6d9;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.insert-area {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.insert-area input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #9fd3ef;
+  border-radius: 8px;
+  outline: none;
+}
+
+.insert-area button {
+  padding: 10px 14px;
+  border: none;
+  background-color: #87ceeb;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.memo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  border: 1px solid #cbeaf8;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 10px;
+}
+
+.memo-item span {
+  color: #333;
+}
+
+.memo-item button {
+  border: none;
+  background-color: #ff9e9e;
+  color: white;
+  padding: 8px 10px;
+  border-radius: 8px;
+  cursor: pointer;
 }

@@ -195,24 +195,136 @@ const Button = styled.button`
 
 // export default App;
 
+// import { useState } from "react";
+
+// function App() {
+//   const [text, setText] = useState("");
+
+//   function handleChange(e) {
+//     setText(e.target.value);
+//   }
+
+//   function handleClick() {
+//     alert(text);
+//   }
+
+//   return (
+//     <div>
+//       <input type="text" onChange={handleChange} />
+//       <button onClick={handleClick}>확인</button>
+//     </div>
+//   );
+// }
+
+// export default App;
+
 import { useState } from "react";
+import styled from "styled-components";
+import MemoInsert from "./MemoInsert.jsx";
+import MemoList from "./MemoList.jsx";
 
-function App() {
-  const [text, setText] = useState("");
+const AppWrapper = styled.div`
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #eaf7ff;
+  font-family: Arial, sans-serif;
 
-  function handleChange(e) {
-    setText(e.target.value);
+  .memo-box {
+    width: 420px;
+    background-color: #f7fcff;
+    border: 2px solid #b9e3f7;
+    border-radius: 15px;
+    padding: 30px;
+    box-sizing: border-box;
   }
 
-  function handleClick() {
-    alert(text);
+  h1 {
+    text-align: center;
+    color: #4da6d9;
+    margin-top: 0;
+    margin-bottom: 20px;
+  }
+
+  .insert-area {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+
+  .insert-area input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #9fd3ef;
+    border-radius: 8px;
+    outline: none;
+  }
+
+  .insert-area button {
+    padding: 10px 14px;
+    border: none;
+    background-color: #87ceeb;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
+  .memo-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    border: 1px solid #cbeaf8;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 10px;
+  }
+
+  .memo-item span {
+    color: #333;
+  }
+
+  .memo-item button {
+    border: none;
+    background-color: #ff9e9e;
+    color: white;
+    padding: 8px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+`;
+
+function App() {
+  const [memos, setMemos] = useState([]);
+  const [nextId, setNextId] = useState(1);
+
+  function handleInsert(text) {
+    const newMemo = {
+      id: nextId,
+      text: text,
+    };
+
+    setMemos([newMemo, ...memos]);
+    setNextId(nextId + 1);
+  }
+
+  function handleRemove(id) {
+    const newMemos = memos.filter(function (memo) {
+      return memo.id !== id;
+    });
+
+    setMemos(newMemos);
   }
 
   return (
-    <div>
-      <input type="text" onChange={handleChange} />
-      <button onClick={handleClick}>확인</button>
-    </div>
+    <AppWrapper>
+      <div className="memo-box">
+        <h1>MemoList</h1>
+        <MemoInsert onInsert={handleInsert} />
+        <MemoList memos={memos} onRemove={handleRemove} />
+      </div>
+    </AppWrapper>
   );
 }
 
